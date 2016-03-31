@@ -9,7 +9,7 @@
       <form id="createBlab">
         <div class="form-group">
           <input id="blabber-upvote" name="upvotes" type="hidden" class="form-control"
-                 value="<%= (new Date()).getTime() %>">
+                 value="<%= req.params.email %>">
           <input id="blabber-email" name="email" type="hidden" class="form-control" value="<%= req.query.email %>">
           <label for="blab-content">Hey, wanna write something stupid?</label>
           <textarea name="text" id="blab-content" class="form-control" rows="3"></textarea>
@@ -49,13 +49,17 @@
 
               <% var upvotes = String(data[i].upvotes).split(','); %>
               <p>
+                <% if (req.query.email == data[i].email) { %>
                 <a href="#" class="deleteBlab" action="/blabs/destroy/<%= data[i].id %>">
                   <i class="fa fa-trash-o"></i>
                   delete
-                </a><span>
+                </a>
+                <span>
                   |
-                </span><a href="#" class="upvoteBlab"
-                          action="/blabs/update/<%= data[i].id %>?upvotes=<%= upvotes.concat([(new Date()).getTime()]).join(',') %>">
+                </span>
+                <% } %>
+                <a href="#" class="upvoteBlab"
+                          action="/blabs/update/<%= data[i].id %>?upvotes=<%= upvotes.concat([req.params.email]).join(',') %>">
                   <i class="fa fa-arrow-up"></i>
                   upvote
                   <%= upvotes.length %>
