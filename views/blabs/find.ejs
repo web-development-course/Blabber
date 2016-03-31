@@ -67,8 +67,7 @@
                   share
                 </a><span>
                   |
-                </span><a target="_blank"
-                          href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwebdev-blabber.herokuapp.com%2Fblabs%2F<%= data[i].id %>&t=<%= data[i].text %>">
+                </span><a href="/blabs/<%= data[i].id %>">
                   <i class="fa fa-clock-o"></i>
                   <%= new Date(data[i].createdAt).toLocaleString() %>
                 </a>
