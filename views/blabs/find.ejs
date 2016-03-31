@@ -1,0 +1,56 @@
+<div class="container-fluid">
+  <div class="blah-blah"></div>
+  <ol class="breadcrumb">
+    <li class="active">Blabber</li>
+  </ol>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 bg-white">
+      <form id="createBlab">
+        <div class="form-group">
+          <input id="blabber-email" name="email" type="hidden" class="form-control" value="<%=req.cookies.blabber%>">
+          <label for="blab-content">Hey, wanna write something stupid?</label>
+          <textarea name="text" id="blab-content" class="form-control" rows="3"></textarea>
+
+          <br/>
+
+          <div class="form-group">
+            <div class="">
+              <button type="submit" class="btn btn-success btn-block">Blab it!</button>
+            </div>
+          </div>
+        </div>
+      </form>
+
+    </div>
+  </div>
+  <br/>
+  <br/>
+  <div class="row">
+    <div class="col-md-6 col-md-offset-3 bg-white">
+
+      <ul class="list-group">
+        <% for (var i = data.length - 1; i >= 0; i--) { %>
+        <% if (data[i].email) { %>
+        <li class="list-group-item">
+          <div class="media">
+            <div class="media-left">
+              <a href="/blabs/<%= data[i].id %>">
+                <img class="media-object" src="http://www.gravatar.com/avatar/<%=sails.crypto.createHash('md5').update(data[i].email.toLowerCase() || '').digest('hex')%>">
+              </a>
+            </div>
+            <div class="media-body">
+              <h4 class="media-heading"><%= data[i].email %></h4>
+
+              <p><%= data[i].createdAt %></p>
+
+              <p><%= data[i].text %></p>
+            </div>
+          </div>
+        </li>
+        <% } %>
+        <% } %>
+      </ul>
+    </div>
+  </div>
+
+</div>
