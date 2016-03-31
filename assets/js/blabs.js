@@ -1,6 +1,6 @@
 $(document).ready(function () {
 
-  if (document.cookie.indexOf('blabber') < 0 && document.location.pathname != '/') {
+  if (document.location.href.indexOf('email') < 0 && document.location.pathname != '/') {
     document.location.href = '/';
   }
 
