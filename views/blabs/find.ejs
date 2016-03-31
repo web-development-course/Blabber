@@ -7,7 +7,8 @@
     <div class="col-md-6 col-md-offset-3 bg-white">
       <form id="createBlab">
         <div class="form-group">
-          <input id="blabber-email" name="email" type="hidden" class="form-control" value="<%=req.cookies.blabber%>">
+          <input id="blabber-upvote" name="upvotes" type="hidden" class="form-control" value="<%= (new Date()).getTime() %>">
+          <input id="blabber-email" name="email" type="hidden" class="form-control" value="<%= req.query.email %>">
           <label for="blab-content">Hey, wanna write something stupid?</label>
           <textarea name="text" id="blab-content" class="form-control" rows="3"></textarea>
 
@@ -25,6 +26,7 @@
   </div>
   <br/>
   <br/>
+
   <div class="row">
     <div class="col-md-6 col-md-offset-3 bg-white">
 
@@ -34,14 +36,38 @@
         <li class="list-group-item">
           <div class="media">
             <div class="media-left">
-              <a>
-                <img class="media-object" src="http://www.gravatar.com/avatar/<%=sails.crypto.createHash('md5').update(data[i].email.toLowerCase() || '').digest('hex')%>">
+              <a href="/blabs/<%=data[i].id%>">
+                <img class="media-object"
+                     src="http://www.gravatar.com/avatar/<%= sails.crypto.createHash('md5').update(data[i].email.toLowerCase() || '').digest('hex') %>">
               </a>
             </div>
             <div class="media-body">
               <h4 class="media-heading"><%= data[i].email %></h4>
 
-              <p><%= data[i].createdAt %></p>
+              <% var upvotes = String(data[i].upvotes).split(','); %>
+              <p>
+                <a href="#" class="deleteBlab" action="/blabs/destroy/<%= data[i].id %>" >
+                  <i class="fa fa-trash-o"></i>
+                  delete
+                </a><span>
+                  |
+                </span><a href="#" class="upvoteBlab" action="/blabs/update/<%=data[i].id%>?upvotes=<%= upvotes.concat([(new Date()).getTime()]).join(',') %>" >
+                  <i class="fa fa-arrow-up"></i>
+                  upvote
+                  <%= upvotes.length %>
+                </a><span>
+                  |
+                </span><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwebdev-blabber.herokuapp.com%2Fblabs%2F<%= data[i].id %>&t=<%= data[i].text %>" >
+                  <i class="fa fa-share"></i>
+                  share
+                </a><span>
+                  |
+                </span><a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=http%3A%2F%2Fwebdev-blabber.herokuapp.com%2Fblabs%2F<%= data[i].id %>&t=<%= data[i].text %>" >
+                  <i class="fa fa-clock-o"></i>
+                  <%= new Date(data[i].createdAt).toLocaleString() %>
+                </a>
+
+              </p>
 
               <p><%= data[i].text %></p>
             </div>

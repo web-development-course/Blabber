@@ -28,9 +28,6 @@ body,
 }
 
 .blabber-welcome {
-  position: fixed;
-  top: 0;
-  width: 80%;
-  margin: 200px 10%;
+  margin-top: 100px;
   background: rgba(255, 255, 255, 0.95);
 }

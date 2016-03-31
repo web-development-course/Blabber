@@ -4,13 +4,6 @@ $(document).ready(function () {
     document.location.href = '/';
   }
 
-  $('#enterToBlabs').click(function() {
-    var email = $('#blabber-email').val();
-    localStorage['blabber'] = email;
-    document.cookie="blabber=" + escape(email);
-    document.location = '/blabs';
-  });
-
   $('#createBlab').submit(function (e) {
     e.preventDefault();
     $.ajax({
@@ -18,16 +11,16 @@ $(document).ready(function () {
       type: 'post',
       data: $(this).serialize(),
       success: function () {
-        document.location.href = '/blabs';
+        document.location.reload();
       }
     });
   });
 
-  $('#updateBlab').submit(function (e) {
+  $('.deleteBlab').click(function (e) {
     e.preventDefault();
     $.ajax({
       url: $(this).attr('action'),
-      type: 'put',
+      type: 'delete',
       data: $(this).serialize(),
       success: function () {
         document.location.reload();
@@ -35,14 +28,14 @@ $(document).ready(function () {
     });
   });
 
-  $('#deleteBlab').click(function (e) {
+  $('.upvoteBlab').click(function (e) {
     e.preventDefault();
     $.ajax({
       url: $(this).attr('action'),
-      type: 'delete',
+      type: 'put',
       data: $(this).serialize(),
       success: function () {
-        document.location.href = '/blabs';
+        document.location.reload();
       }
     });
   });
