@@ -15,7 +15,7 @@ So let's start developing!
 - Create a basic html with a redirection button to /blabs (without the email)
 - Next, edit the `find.ejs` file (reachable via /blabs)
 - Create the html for the app, use bootstrap components and create a static version of the app
-- 
+
 # Step 3 - Add functionality
 - Connect the `add blab` button to the api and make it create a new blab (leave the email for now)
 - Connect the list to the `data` object and make it display all the blabs
