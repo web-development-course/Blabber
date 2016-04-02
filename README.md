@@ -29,7 +29,7 @@ So let's start developing!
 - Make the homepage button redirect to `/blabs?email=[EMAIL_FROM_INPUT]`
 - Add a hidden input to the 'new blab' form with the email from the url
 - Display the email of the creator of each blab
-- Display the profile picture of the blab creator (add an img tag with the src `http://email2pic.herokuapp.com/[EMAIL_OF_CREATOR]`)
+- Display the profile picture of the blab creator (add an img tag with the src `http://email2pic.herokuapp.com/gravatar/[EMAIL_OF_CREATOR]`)
 
 # Step 6 - Add social buttons
 - Create a `upvote` button with a counter. 
