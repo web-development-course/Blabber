@@ -24,12 +24,13 @@ So let's start developing!
 # Step 4 - Connect to a Database
 - Follow the instructions in our [Sails lesson](https://docs.google.com/presentation/d/1Wo5SncGzJbYi3YNfZSmVSnFUkmojhcTK7OCNzecgAJs/edit?usp=sharing) and connect the app to mongo DB. 
 
-# Step 5 - Display the user's e-mail
+# Step 5 - Display the user's e-mail and picture
 - Add the input box the the homepage
 - Make the homepage button redirect to `/blabs?email=[EMAIL_FROM_INPUT]`
 - Add a hidden input to the 'new blab' form with the email from the url
 - Display the email of the creator of each blab
-- Display the profile picture of the blab creator (add an img tag with the src `http://email2pic.herokuapp.com/gravatar/[EMAIL_OF_CREATOR]`)
+- To display the profile picture we'll use [Gravatar](https://en.gravatar.com/) - create an account if you don't have one.
+- To display the gravatar of the blab creator, just add an img tag with the src `http://email2pic.herokuapp.com/gravatar/[EMAIL_OF_CREATOR]`
 
 # Step 6 - Add social buttons
 - Create a `upvote` button with a counter. 
