@@ -9,7 +9,7 @@
       <form id="createBlab">
         <div class="form-group">
           <input id="blabber-upvote" name="upvotes" type="hidden" class="form-control"
-                 value="<%= req.params.email %>">
+                 value="0">
           <input id="blabber-email" name="email" type="hidden" class="form-control" value="<%= req.query.email %>">
           <label for="blab-content">Hey, wanna write something stupid?</label>
           <textarea name="text" id="blab-content" class="form-control" rows="3"></textarea>
@@ -47,7 +47,6 @@
             <div class="media-body">
               <h4 class="media-heading"><%= data[i].email %></h4>
 
-              <% var upvotes = String(data[i].upvotes).split(','); %>
               <p>
                 <% if (req.query.email == data[i].email) { %>
                 <a href="#" class="deleteBlab" action="/blabs/destroy/<%= data[i].id %>">
@@ -59,10 +58,10 @@
                 </span>
                 <% } %>
                 <a href="#" class="upvoteBlab"
-                          action="/blabs/update/<%= data[i].id %>?upvotes=<%= upvotes.concat([req.params.email]).join(',') %>">
+                          action="/blabs/update/<%= data[i].id %>?upvotes=<%= parseInt(data[i].upvotes || 0) + 1 %>">
                   <i class="fa fa-arrow-up"></i>
                   upvote
-                  <%= upvotes.length %>
+                  <%= (data[i].upvotes || 0) %>
                 </a><span>
                   |
                 </span><a target="_blank"
