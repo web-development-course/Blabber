@@ -1,10 +1,6 @@
 $(document).ready(function () {
 
-  if (document.location.href.indexOf('email') < 0 && document.location.pathname != '/') {
-    document.location.href = '/';
-  }
-
-  $('#createBlab').submit(function (e) {
+  $('#create-blab').submit(function (e) {
     e.preventDefault();
     $.ajax({
       url: '/blabs/create',
@@ -16,7 +12,7 @@ $(document).ready(function () {
     });
   });
 
-  $('.deleteBlab').click(function (e) {
+  $('.delete-blab').click(function (e) {
     e.preventDefault();
     $.ajax({
       url: $(this).attr('action'),
@@ -28,7 +24,7 @@ $(document).ready(function () {
     });
   });
 
-  $('.upvoteBlab').click(function (e) {
+  $('.upvote-blab').click(function (e) {
     e.preventDefault();
     $.ajax({
       url: $(this).attr('action'),
@@ -40,7 +36,3 @@ $(document).ready(function () {
     });
   });
 });
-
-function md5(text) {
-
-}
